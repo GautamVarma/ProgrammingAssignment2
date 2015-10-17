@@ -1,7 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This program contains two function ...the purpose is to take an 
+## input matrix and return its inverse matrix
 
-## Write a short comment describing this function
+## this function defines functions used to load the input matrix and inverse 
+## into cache for later use & to retrieve them when needed
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -13,20 +14,18 @@ makeCacheMatrix <- function(x = matrix()) {
   
   get <- function()    x
   
-  setinverse <- function(xinv) {
-    inv <<- xinv
-  }
+  setinverse <- function(xinv)     inv <<- xinv
   
   getinverse <- function()  inv
   
   list (set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
-
-## Write a short comment describing this function
+## this function evaluate the cache --if present then returns the cached value  
+## otherwise it calculates it
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        ## returns the cached inverse matrix value
   z <- x$getinverse()
   
   if (!is.null(z)) 
@@ -34,10 +33,8 @@ cacheSolve <- function(x, ...) {
   message("getting cached value")
   return (z)
     }
-  else
-   
+  
   xinv<-solve(x$get(),...)
   x$setinverse(xinv)
-  
   return(xinv)
 }
